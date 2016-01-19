@@ -1,0 +1,99 @@
+﻿Classes and properties
+
+clsProduct
+	id
+	name
+	cost
+	gross
+	retail
+	[supplier]
+	[region]
+	[clsZone]
+
+clsRegion(Atl/ON-QC/PRA/BC)
+	id
+	name
+
+clsZone(BigBox/Regular/Remote)
+	id
+	name
+clsProductSwitchOut? (per dealer 7-8 items based on Region, Category)
+	
+clsSupplier
+	id
+	name
+
+clsFlyerEvent
+	id
+	start
+	end
+	name
+	[product]
+
+clsFlyerSchedule
+	id
+	[clsFlyerEvent]
+	desc
+		Development 165
+		Core Product Selection 137
+		Sent to Vendors for special pricing 137
+		returned from vendors 123
+		Core Product List sent to design 110
+		Zone pricing submitted 82
+		Product availability confirmed 82
+		Zone pricing confirmed by zone chapions 82
+		final review sent to dealers for feedback	75
+		design proofs released to dealers 75
+		final proof from flyer design to Marketing and Procurement 61
+		deadline for dealer feedback 49
+		custom product changes complete 54
+		1st draft released to dealers 51
+		Zone champ price changes due 42
+		final proofs release to dealers 20
+		snet to printer 21
+		POP packages sent to dealers 12
+		flyers due at distributors 12
+	daysbeforeflyer(ordered desc)
+	checked if done bool
+
+clsFlyerOrder
+	id
+	number
+	[flyerevent]
+	[dealer]
+	[distributor]
+
+clsDealer
+	ID
+	APID
+	Name
+	Address
+	Street
+	City
+	Province
+	PC
+	Cntact name
+	contact number(potentially many 1-800 etc)different types
+	[clsDealerHours]
+	[clsDealerPayType]
+	[clsDistributor]
+
+clsDealerHours(imprint)
+	day
+	open
+	close
+	holiday
+	hopen
+	hclose
+
+clsDealerPayType
+	id
+	type(AE,V,MC,Interac,PayPal)
+
+clsDistributor
+	ID
+	name
+	type (newspaper/flyerbundle/canadapost)
+	distribcontactname
+	number
+	email
