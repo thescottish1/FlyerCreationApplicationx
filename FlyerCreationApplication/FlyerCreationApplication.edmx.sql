@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/19/2016 11:27:35
+-- Date Created: 01/20/2016 09:26:22
 -- Generated from EDMX file: F:\Users\Scott-HaggisPC\Documents\Visual Studio 2015\Projects\FlyerCreationApplication\FlyerCreationApplication\FlyerCreationApplication.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [FlyerAdministration];
+USE [Flyer];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -216,7 +216,8 @@ CREATE TABLE [dbo].[People] (
     [title] nvarchar(max)  NOT NULL,
     [isDealer] bit  NOT NULL,
     [SupplierBase_Id] int  NOT NULL,
-    [DealerBase_Id] int  NOT NULL
+    [DealerBase_Id] int  NOT NULL,
+    [Distributor_Id] int  NOT NULL
 );
 GO
 
@@ -257,7 +258,12 @@ CREATE TABLE [dbo].[Distributors] (
     [name] nvarchar(max)  NOT NULL,
     [type] nvarchar(max)  NOT NULL,
     [isdeleted] bit  NOT NULL,
-    [DealerBase_Id] int  NOT NULL
+    [advanceddays] nvarchar(max)  NOT NULL,
+    [instructions] nvarchar(max)  NOT NULL,
+    [datestarted] datetime  NOT NULL,
+    [dateended] datetime  NOT NULL,
+    [DealerBase_Id] int  NOT NULL,
+    [Addresses_Id] int  NOT NULL
 );
 GO
 
@@ -275,10 +281,6 @@ CREATE TABLE [dbo].[DealerBases] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [apid] nvarchar(max)  NOT NULL,
     [name] nvarchar(max)  NOT NULL,
-    [street] nvarchar(max)  NOT NULL,
-    [city] nvarchar(max)  NOT NULL,
-    [province] nvarchar(max)  NOT NULL,
-    [postalcode] nvarchar(max)  NOT NULL,
     [isdeleted] bit  NOT NULL,
     [Region_Id] int  NOT NULL
 );
@@ -322,6 +324,18 @@ CREATE TABLE [dbo].[SupplierRegions] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [SupplierBase_Id] int  NOT NULL,
     [Region_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'Addresses'
+CREATE TABLE [dbo].[Addresses] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Street] nvarchar(max)  NOT NULL,
+    [City] nvarchar(max)  NOT NULL,
+    [province] nvarchar(max)  NOT NULL,
+    [postalcode] nvarchar(max)  NOT NULL,
+    [DealerBases_Id] int  NOT NULL,
+    [SupplierBase_Id] int  NOT NULL
 );
 GO
 
@@ -434,6 +448,12 @@ GO
 -- Creating primary key on [Id] in table 'SupplierRegions'
 ALTER TABLE [dbo].[SupplierRegions]
 ADD CONSTRAINT [PK_SupplierRegions]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Addresses'
+ALTER TABLE [dbo].[Addresses]
+ADD CONSTRAINT [PK_Addresses]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -724,6 +744,66 @@ GO
 CREATE INDEX [IX_FK_ProductSupplierPricing]
 ON [dbo].[SupplierPricings]
     ([Product_Id]);
+GO
+
+-- Creating foreign key on [Distributor_Id] in table 'People'
+ALTER TABLE [dbo].[People]
+ADD CONSTRAINT [FK_DistributorPerson]
+    FOREIGN KEY ([Distributor_Id])
+    REFERENCES [dbo].[Distributors]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DistributorPerson'
+CREATE INDEX [IX_FK_DistributorPerson]
+ON [dbo].[People]
+    ([Distributor_Id]);
+GO
+
+-- Creating foreign key on [Addresses_Id] in table 'Distributors'
+ALTER TABLE [dbo].[Distributors]
+ADD CONSTRAINT [FK_DistributorAddress]
+    FOREIGN KEY ([Addresses_Id])
+    REFERENCES [dbo].[Addresses]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DistributorAddress'
+CREATE INDEX [IX_FK_DistributorAddress]
+ON [dbo].[Distributors]
+    ([Addresses_Id]);
+GO
+
+-- Creating foreign key on [DealerBases_Id] in table 'Addresses'
+ALTER TABLE [dbo].[Addresses]
+ADD CONSTRAINT [FK_AddressDealerBase]
+    FOREIGN KEY ([DealerBases_Id])
+    REFERENCES [dbo].[DealerBases]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_AddressDealerBase'
+CREATE INDEX [IX_FK_AddressDealerBase]
+ON [dbo].[Addresses]
+    ([DealerBases_Id]);
+GO
+
+-- Creating foreign key on [SupplierBase_Id] in table 'Addresses'
+ALTER TABLE [dbo].[Addresses]
+ADD CONSTRAINT [FK_SupplierBaseAddress]
+    FOREIGN KEY ([SupplierBase_Id])
+    REFERENCES [dbo].[SupplierBases]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_SupplierBaseAddress'
+CREATE INDEX [IX_FK_SupplierBaseAddress]
+ON [dbo].[Addresses]
+    ([SupplierBase_Id]);
 GO
 
 -- --------------------------------------------------

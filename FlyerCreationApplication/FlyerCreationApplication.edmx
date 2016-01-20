@@ -24,6 +24,7 @@
     <EntitySet Name="Products" EntityType="FlyerCreationApplication.Store.Products" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SupplierBases" EntityType="FlyerCreationApplication.Store.SupplierBases" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SupplierRegions" EntityType="FlyerCreationApplication.Store.SupplierRegions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Addresses" EntityType="FlyerCreationApplication.Store.Addresses" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FlyerEventBaseProduct" Association="FlyerCreationApplication.Store.FlyerEventBaseProduct">
       <End Role="FlyerEventBase" EntitySet="FlyerEventBases" />
       <End Role="Product" EntitySet="Products" />
@@ -99,6 +100,22 @@
     <AssociationSet Name="ProductSupplierPricing" Association="FlyerCreationApplication.Store.ProductSupplierPricing">
       <End Role="Product" EntitySet="Products" />
       <End Role="SupplierPricing" EntitySet="SupplierPricings" />
+    </AssociationSet>
+    <AssociationSet Name="DistributorPerson" Association="FlyerCreationApplication.Store.DistributorPerson">
+      <End Role="Distributor" EntitySet="Distributors" />
+      <End Role="Person" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="DistributorAddress" Association="FlyerCreationApplication.Store.DistributorAddress">
+      <End Role="Distributor" EntitySet="Distributors" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="AddressDealerBase" Association="FlyerCreationApplication.Store.AddressDealerBase">
+      <End Role="Address" EntitySet="Addresses" />
+      <End Role="DealerBase" EntitySet="DealerBases" />
+    </AssociationSet>
+    <AssociationSet Name="SupplierBaseAddress" Association="FlyerCreationApplication.Store.SupplierBaseAddress">
+      <End Role="SupplierBase" EntitySet="SupplierBases" />
+      <End Role="Address" EntitySet="Addresses" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Regions">
@@ -182,6 +199,7 @@
     <Property Name="isDealer" Type="bit" Nullable="false" />
     <Property Name="SupplierBase_Id" Type="int" Nullable="false" />
     <Property Name="DealerBase_Id" Type="int" Nullable="false" />
+    <Property Name="Distributor_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Contacts">
     <Key>
@@ -222,7 +240,12 @@
     <Property Name="name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="type" Type="nvarchar(max)" Nullable="false" />
     <Property Name="isdeleted" Type="bit" Nullable="false" />
+    <Property Name="advanceddays" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="instructions" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="datestarted" Type="datetime" Nullable="false" />
+    <Property Name="dateended" Type="datetime" Nullable="false" />
     <Property Name="DealerBase_Id" Type="int" Nullable="false" />
+    <Property Name="Addresses_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SupplierPricings">
     <Key>
@@ -240,10 +263,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="apid" Type="nvarchar(max)" Nullable="false" />
     <Property Name="name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="street" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="city" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="province" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="postalcode" Type="nvarchar(max)" Nullable="false" />
     <Property Name="isdeleted" Type="bit" Nullable="false" />
     <Property Name="Region_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -287,6 +306,18 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SupplierBase_Id" Type="int" Nullable="false" />
     <Property Name="Region_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Addresses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Street" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="province" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="postalcode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DealerBases_Id" Type="int" Nullable="false" />
+    <Property Name="SupplierBase_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FlyerEventBaseProduct">
     <End Role="FlyerEventBase" Type="FlyerCreationApplication.Store.FlyerEventBases" Multiplicity="1" />
@@ -516,6 +547,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="DistributorPerson">
+    <End Role="Distributor" Type="FlyerCreationApplication.Store.Distributors" Multiplicity="1" />
+    <End Role="Person" Type="FlyerCreationApplication.Store.People" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Distributor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="Distributor_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DistributorAddress">
+    <End Role="Distributor" Type="FlyerCreationApplication.Store.Distributors" Multiplicity="*" />
+    <End Role="Address" Type="FlyerCreationApplication.Store.Addresses" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Distributor">
+        <PropertyRef Name="Addresses_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AddressDealerBase">
+    <End Role="Address" Type="FlyerCreationApplication.Store.Addresses" Multiplicity="*" />
+    <End Role="DealerBase" Type="FlyerCreationApplication.Store.DealerBases" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="DealerBase">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="DealerBases_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SupplierBaseAddress">
+    <End Role="SupplierBase" Type="FlyerCreationApplication.Store.SupplierBases" Multiplicity="1" />
+    <End Role="Address" Type="FlyerCreationApplication.Store.Addresses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SupplierBase">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="SupplierBase_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -615,6 +694,23 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="SupplierPricing" EntitySet="SupplierPricings" />
           </AssociationSet>
+          <AssociationSet Name="DistributorPerson" Association="FlyerCreationApplication.DistributorPerson">
+            <End Role="Distributor" EntitySet="Distributors" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <EntitySet Name="Addresses" EntityType="FlyerCreationApplication.Address" />
+          <AssociationSet Name="DistributorAddress" Association="FlyerCreationApplication.DistributorAddress">
+            <End Role="Distributor" EntitySet="Distributors" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="AddressDealerBase" Association="FlyerCreationApplication.AddressDealerBase">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="DealerBase" EntitySet="DealerBases" />
+          </AssociationSet>
+          <AssociationSet Name="SupplierBaseAddress" Association="FlyerCreationApplication.SupplierBaseAddress">
+            <End Role="SupplierBase" EntitySet="SupplierBases" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Product">
           <Key>
@@ -660,6 +756,7 @@
           <NavigationProperty Name="People" Relationship="FlyerCreationApplication.SupplierBasePerson" FromRole="SupplierBase" ToRole="Person" />
           <NavigationProperty Name="Entity1" Relationship="FlyerCreationApplication.SupplierBaseEntity1" FromRole="SupplierBase" ToRole="Entity1" />
           <NavigationProperty Name="SupplierPricings" Relationship="FlyerCreationApplication.SupplierBaseSupplierPricing" FromRole="SupplierBase" ToRole="SupplierPricing" />
+          <NavigationProperty Name="Addresses" Relationship="FlyerCreationApplication.SupplierBaseAddress" FromRole="SupplierBase" ToRole="Address" />
         </EntityType>
         <EntityType Name="FlyerEventBase">
           <Key>
@@ -739,10 +836,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="apid" Type="String" Nullable="false" />
           <Property Name="name" Type="String" Nullable="false" />
-          <Property Name="street" Type="String" Nullable="false" />
-          <Property Name="city" Type="String" Nullable="false" />
-          <Property Name="province" Type="String" Nullable="false" />
-          <Property Name="postalcode" Type="String" Nullable="false" />
           <NavigationProperty Name="Payments" Relationship="FlyerCreationApplication.DealerBasePayment" FromRole="DealerBase" ToRole="Payment" />
           <NavigationProperty Name="HoursOfOperations" Relationship="FlyerCreationApplication.DealerBaseHoursOfOperation" FromRole="DealerBase" ToRole="HoursOfOperation" />
           <NavigationProperty Name="Distributors" Relationship="FlyerCreationApplication.DealerBaseDistributor" FromRole="DealerBase" ToRole="Distributor" />
@@ -750,6 +843,7 @@
           <NavigationProperty Name="FlyerOrders" Relationship="FlyerCreationApplication.DealerBaseFlyerOrder" FromRole="DealerBase" ToRole="FlyerOrder" />
           <NavigationProperty Name="Region" Relationship="FlyerCreationApplication.RegionDealerBase" FromRole="DealerBase" ToRole="Region" />
           <Property Name="isdeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="FlyerCreationApplication.AddressDealerBase" FromRole="DealerBase" ToRole="Address" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -763,6 +857,7 @@
           <NavigationProperty Name="Contacts" Relationship="FlyerCreationApplication.PersonContact" FromRole="Person" ToRole="Contact" />
           <NavigationProperty Name="DealerBase" Relationship="FlyerCreationApplication.DealerBasePerson" FromRole="Person" ToRole="DealerBase" />
           <Property Name="isDealer" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Distributor" Relationship="FlyerCreationApplication.DistributorPerson" FromRole="Person" ToRole="Distributor" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -813,6 +908,12 @@
           <Property Name="type" Type="String" Nullable="false" />
           <NavigationProperty Name="DealerBase" Relationship="FlyerCreationApplication.DealerBaseDistributor" FromRole="Distributor" ToRole="DealerBase" />
           <Property Name="isdeleted" Type="Boolean" Nullable="false" />
+          <Property Name="advanceddays" Type="String" Nullable="false" />
+          <Property Name="instructions" Type="String" Nullable="false" />
+          <Property Name="datestarted" Type="DateTime" Nullable="false" />
+          <Property Name="dateended" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="People" Relationship="FlyerCreationApplication.DistributorPerson" FromRole="Distributor" ToRole="Person" />
+          <NavigationProperty Name="Addresses" Relationship="FlyerCreationApplication.DistributorAddress" FromRole="Distributor" ToRole="Address" />
         </EntityType>
         <Association Name="FlyerEventBaseProduct">
           <End Type="FlyerCreationApplication.FlyerEventBase" Role="FlyerEventBase" Multiplicity="1" />
@@ -897,6 +998,35 @@
         <Association Name="ProductSupplierPricing">
           <End Type="FlyerCreationApplication.Product" Role="Product" Multiplicity="1" />
           <End Type="FlyerCreationApplication.SupplierPricing" Role="SupplierPricing" Multiplicity="*" />
+        </Association>
+        <Association Name="DistributorPerson">
+          <End Type="FlyerCreationApplication.Distributor" Role="Distributor" Multiplicity="1" />
+          <End Type="FlyerCreationApplication.Person" Role="Person" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Street" Type="String" Nullable="false" />
+          <Property Name="City" Type="String" Nullable="false" />
+          <Property Name="province" Type="String" Nullable="false" />
+          <Property Name="postalcode" Type="String" Nullable="false" />
+          <NavigationProperty Name="Distributor" Relationship="FlyerCreationApplication.DistributorAddress" FromRole="Address" ToRole="Distributor" />
+          <NavigationProperty Name="DealerBases" Relationship="FlyerCreationApplication.AddressDealerBase" FromRole="Address" ToRole="DealerBase" />
+          <NavigationProperty Name="SupplierBase" Relationship="FlyerCreationApplication.SupplierBaseAddress" FromRole="Address" ToRole="SupplierBase" />
+        </EntityType>
+        <Association Name="DistributorAddress">
+          <End Type="FlyerCreationApplication.Distributor" Role="Distributor" Multiplicity="1" />
+          <End Type="FlyerCreationApplication.Address" Role="Address" Multiplicity="1" />
+        </Association>
+        <Association Name="AddressDealerBase">
+          <End Type="FlyerCreationApplication.Address" Role="Address" Multiplicity="1" />
+          <End Type="FlyerCreationApplication.DealerBase" Role="DealerBase" Multiplicity="1" />
+        </Association>
+        <Association Name="SupplierBaseAddress">
+          <End Type="FlyerCreationApplication.SupplierBase" Role="SupplierBase" Multiplicity="1" />
+          <End Type="FlyerCreationApplication.Address" Role="Address" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1026,6 +1156,10 @@
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="type" ColumnName="type" />
           <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+          <ScalarProperty Name="advanceddays" ColumnName="advanceddays" />
+          <ScalarProperty Name="instructions" ColumnName="instructions" />
+          <ScalarProperty Name="datestarted" ColumnName="datestarted" />
+          <ScalarProperty Name="dateended" ColumnName="dateended" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1043,10 +1177,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="apid" ColumnName="apid" />
           <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="street" ColumnName="street" />
-          <ScalarProperty Name="city" ColumnName="city" />
-          <ScalarProperty Name="province" ColumnName="province" />
-          <ScalarProperty Name="postalcode" ColumnName="postalcode" />
           <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -1087,6 +1217,17 @@
       <EntityTypeMapping TypeName="IsTypeOf(FlyerCreationApplication.SupplierRegion)">
         <MappingFragment StoreEntitySet="SupplierRegions">
           <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="IsTypeOf(FlyerCreationApplication.Address)">
+        <MappingFragment StoreEntitySet="Addresses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="province" ColumnName="province" />
+          <ScalarProperty Name="postalcode" ColumnName="postalcode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1239,6 +1380,38 @@
         <ScalarProperty Name="Id" ColumnName="Product_Id" />
       </EndProperty>
       <EndProperty Name="SupplierPricing">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DistributorPerson" TypeName="FlyerCreationApplication.DistributorPerson" StoreEntitySet="People">
+      <EndProperty Name="Distributor">
+        <ScalarProperty Name="Id" ColumnName="Distributor_Id" />
+      </EndProperty>
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DistributorAddress" TypeName="FlyerCreationApplication.DistributorAddress" StoreEntitySet="Distributors">
+      <EndProperty Name="Address">
+        <ScalarProperty Name="Id" ColumnName="Addresses_Id" />
+      </EndProperty>
+      <EndProperty Name="Distributor">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AddressDealerBase" TypeName="FlyerCreationApplication.AddressDealerBase" StoreEntitySet="Addresses">
+      <EndProperty Name="DealerBase">
+        <ScalarProperty Name="Id" ColumnName="DealerBases_Id" />
+      </EndProperty>
+      <EndProperty Name="Address">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SupplierBaseAddress" TypeName="FlyerCreationApplication.SupplierBaseAddress" StoreEntitySet="Addresses">
+      <EndProperty Name="SupplierBase">
+        <ScalarProperty Name="Id" ColumnName="SupplierBase_Id" />
+      </EndProperty>
+      <EndProperty Name="Address">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

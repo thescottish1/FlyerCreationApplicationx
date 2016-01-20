@@ -43,5 +43,6 @@ namespace FlyerCreationApplication
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<SupplierBase> SupplierBases { get; set; }
         public virtual DbSet<SupplierRegion> SupplierRegions { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; }
     }
 }

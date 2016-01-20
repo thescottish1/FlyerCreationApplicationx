@@ -20,6 +20,7 @@ namespace FlyerCreationApplication
             this.People = new HashSet<Person>();
             this.Entity1 = new HashSet<SupplierRegion>();
             this.SupplierPricings = new HashSet<SupplierPricing>();
+            this.Addresses = new HashSet<Address>();
         }
     
         public int Id { get; set; }
@@ -32,5 +33,7 @@ namespace FlyerCreationApplication
         public virtual ICollection<SupplierRegion> Entity1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SupplierPricing> SupplierPricings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Address> Addresses { get; set; }
     }
 }

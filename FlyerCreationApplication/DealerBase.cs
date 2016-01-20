@@ -27,10 +27,6 @@ namespace FlyerCreationApplication
         public int Id { get; set; }
         public string apid { get; set; }
         public string name { get; set; }
-        public string street { get; set; }
-        public string city { get; set; }
-        public string province { get; set; }
-        public string postalcode { get; set; }
         public bool isdeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -44,5 +40,6 @@ namespace FlyerCreationApplication
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FlyerOrder> FlyerOrders { get; set; }
         public virtual Region Region { get; set; }
+        public virtual Address Address { get; set; }
     }
 }

@@ -14,11 +14,24 @@ namespace FlyerCreationApplication
     
     public partial class Distributor
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Distributor()
+        {
+            this.People = new HashSet<Person>();
+        }
+    
         public int Id { get; set; }
         public string name { get; set; }
         public string type { get; set; }
         public bool isdeleted { get; set; }
+        public string advanceddays { get; set; }
+        public string instructions { get; set; }
+        public System.DateTime datestarted { get; set; }
+        public System.DateTime dateended { get; set; }
     
         public virtual DealerBase DealerBase { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Person> People { get; set; }
+        public virtual Address Addresses { get; set; }
     }
 }

@@ -30,5 +30,6 @@ namespace FlyerCreationApplication
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contact> Contacts { get; set; }
         public virtual DealerBase DealerBase { get; set; }
+        public virtual Distributor Distributor { get; set; }
     }
 }
