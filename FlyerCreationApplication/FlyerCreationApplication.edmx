@@ -1015,6 +1015,7 @@
           <NavigationProperty Name="Distributor" Relationship="FlyerCreationApplication.DistributorAddress" FromRole="Address" ToRole="Distributor" />
           <NavigationProperty Name="DealerBases" Relationship="FlyerCreationApplication.AddressDealerBase" FromRole="Address" ToRole="DealerBase" />
           <NavigationProperty Name="SupplierBase" Relationship="FlyerCreationApplication.SupplierBaseAddress" FromRole="Address" ToRole="SupplierBase" />
+          <Property Name="country" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="DistributorAddress">
           <End Type="FlyerCreationApplication.Distributor" Role="Distributor" Multiplicity="1" />

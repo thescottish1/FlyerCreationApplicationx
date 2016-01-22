@@ -37,7 +37,7 @@
         <AssociationConnector Association="FlyerCreationApplication.FlyerEventBaseFlyerOrder" />
         <AssociationConnector Association="FlyerCreationApplication.DealerBaseFlyerOrder" />
         <AssociationConnector Association="FlyerCreationApplication.RegionDealerBase" />
-        <EntityTypeShape EntityType="FlyerCreationApplication.SupplierRegion" Width="1.5" PointX="7.375" PointY="0.625" />
+        <EntityTypeShape EntityType="FlyerCreationApplication.SupplierRegion" Width="1.5" PointX="7.25" PointY="0.5" />
         <AssociationConnector Association="FlyerCreationApplication.SupplierBaseEntity1" />
         <AssociationConnector Association="FlyerCreationApplication.RegionEntity1" />
         <AssociationConnector Association="FlyerCreationApplication.SupplierBaseSupplierPricing" />

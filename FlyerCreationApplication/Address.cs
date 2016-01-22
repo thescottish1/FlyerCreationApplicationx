@@ -19,6 +19,7 @@ namespace FlyerCreationApplication
         public string City { get; set; }
         public string province { get; set; }
         public string postalcode { get; set; }
+        public string country { get; set; }
     
         public virtual Distributor Distributor { get; set; }
         public virtual DealerBase DealerBases { get; set; }
