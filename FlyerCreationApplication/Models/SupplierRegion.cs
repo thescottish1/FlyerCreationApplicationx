@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FlyerCreationApplication
+namespace FlyerCreationApplication.Models
 {
     using System;
     using System.Collections.Generic;
@@ -15,8 +15,10 @@ namespace FlyerCreationApplication
     public partial class SupplierRegion
     {
         public int Id { get; set; }
+        public int SupplierBase_Id { get; set; }
+        public int Region_Id { get; set; }
     
-        public virtual SupplierBase SupplierBase { get; set; }
         public virtual Region Region { get; set; }
+        public virtual SupplierBas SupplierBas { get; set; }
     }
 }

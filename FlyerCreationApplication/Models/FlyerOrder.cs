@@ -7,25 +7,31 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FlyerCreationApplication
+namespace FlyerCreationApplication.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Theme
+    public partial class FlyerOrder
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Theme()
+        public FlyerOrder()
         {
-            this.FlyerEventBases = new HashSet<FlyerEventBase>();
+            this.Distributors = new HashSet<Distributor>();
         }
     
         public int Id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
+        public string amoutordered { get; set; }
+        public System.DateTime dateordered { get; set; }
+        public string orderedby { get; set; }
         public bool isdeleted { get; set; }
+        public string lastchanged { get; set; }
+        public int FlyerEventBase_Id { get; set; }
+        public int DealerBase_Id { get; set; }
     
+        public virtual DealerBas DealerBas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FlyerEventBase> FlyerEventBases { get; set; }
+        public virtual ICollection<Distributor> Distributors { get; set; }
+        public virtual FlyerEventBas FlyerEventBas { get; set; }
     }
 }

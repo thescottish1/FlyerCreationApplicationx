@@ -1,0 +1,1561 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FlyerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="province" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="postalcode" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="DealerBases_Id" Type="int" Nullable="false" />
+          <Property Name="SupplierBase_Id" Type="int" Nullable="false" />
+          <Property Name="country" Type="nchar" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contacttype" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="contactinfo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Person_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DealerBases">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="apid" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isdeleted" Type="bit" Nullable="false" />
+          <Property Name="Region_Id" Type="int" Nullable="false" />
+          <Property Name="Payment_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Distributors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="type" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isdeleted" Type="bit" Nullable="false" />
+          <Property Name="advanceddays" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="instructions" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="datestarted" Type="datetime" Nullable="false" />
+          <Property Name="dateended" Type="datetime" Nullable="false" />
+          <Property Name="DealerBase_Id" Type="int" Nullable="false" />
+          <Property Name="FlyerOrder_Id" Type="int" />
+          <Property Name="Addresses_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FlyerEventBases">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="start" Type="datetime" Nullable="false" />
+          <Property Name="end" Type="datetime" Nullable="false" />
+          <Property Name="theme" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isdeleted" Type="bit" Nullable="false" />
+          <Property Name="Theme_Id" Type="int" Nullable="false" />
+          <Property Name="FlyerFormat_Id" Type="int" Nullable="false" />
+          <Property Name="FlyerType_Id" Type="int" Nullable="false" />
+          <Property Name="FlyerSchedule_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FlyerFormats">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="formatlong" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="formatshort" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isdeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FlyerOrders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="amoutordered" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="dateordered" Type="datetime" Nullable="false" />
+          <Property Name="orderedby" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isdeleted" Type="bit" Nullable="false" />
+          <Property Name="lastchanged" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FlyerEventBase_Id" Type="int" Nullable="false" />
+          <Property Name="DealerBase_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FlyerSchedules">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tminus" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="order" Type="int" Nullable="false" />
+          <Property Name="scheduleevent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="iscomplete" Type="bit" Nullable="false" />
+          <Property Name="isdeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FlyerTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="typenamelong" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="typenameshort" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isdeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HoursOfOperations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="day" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="opentime" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="closetime" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isdeleted" Type="bit" Nullable="false" />
+          <Property Name="isclosed" Type="bit" Nullable="false" />
+          <Property Name="DealerBase_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isaccepted" Type="bit" Nullable="false" />
+          <Property Name="isdeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="People">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="lname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isDealer" Type="bit" Nullable="false" />
+          <Property Name="SupplierBase_Id" Type="int" Nullable="false" />
+          <Property Name="DealerBase_Id" Type="int" Nullable="false" />
+          <Property Name="Distributor_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="cost" Type="int" Nullable="false" />
+          <Property Name="gross" Type="int" Nullable="false" />
+          <Property Name="retail" Type="int" Nullable="false" />
+          <Property Name="isdeleted" Type="bit" Nullable="false" />
+          <Property Name="FlyerEventBase_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Regions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="longname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="shortname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isdeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SupplierBases">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isdeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SupplierPricings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cost" Type="int" Nullable="false" />
+          <Property Name="SupplierBase_Id" Type="int" Nullable="false" />
+          <Property Name="Product_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SupplierRegions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupplierBase_Id" Type="int" Nullable="false" />
+          <Property Name="Region_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Themes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isdeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shortname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="longname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Region_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AddressDealerBase">
+          <End Role="DealerBases" Type="Self.DealerBases" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DealerBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="DealerBases_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealerBaseDistributor">
+          <End Role="DealerBases" Type="Self.DealerBases" Multiplicity="1" />
+          <End Role="Distributors" Type="Self.Distributors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DealerBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Distributors">
+              <PropertyRef Name="DealerBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealerBaseFlyerOrder">
+          <End Role="DealerBases" Type="Self.DealerBases" Multiplicity="1" />
+          <End Role="FlyerOrders" Type="Self.FlyerOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DealerBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlyerOrders">
+              <PropertyRef Name="DealerBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealerBaseHoursOfOperation">
+          <End Role="DealerBases" Type="Self.DealerBases" Multiplicity="1" />
+          <End Role="HoursOfOperations" Type="Self.HoursOfOperations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DealerBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HoursOfOperations">
+              <PropertyRef Name="DealerBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealerBasePerson">
+          <End Role="DealerBases" Type="Self.DealerBases" Multiplicity="1" />
+          <End Role="People" Type="Self.People" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DealerBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="DealerBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealerBasesPayments">
+          <End Role="Payments" Type="Self.Payments" Multiplicity="1" />
+          <End Role="DealerBases" Type="Self.DealerBases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DealerBases">
+              <PropertyRef Name="Payment_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DistributorAddress">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="1" />
+          <End Role="Distributors" Type="Self.Distributors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Distributors">
+              <PropertyRef Name="Addresses_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DistributorPerson">
+          <End Role="Distributors" Type="Self.Distributors" Multiplicity="1" />
+          <End Role="People" Type="Self.People" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distributors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="Distributor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DistributorsFlyerOrder">
+          <End Role="FlyerOrders" Type="Self.FlyerOrders" Multiplicity="0..1" />
+          <End Role="Distributors" Type="Self.Distributors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlyerOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Distributors">
+              <PropertyRef Name="FlyerOrder_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlyerEventBaseFlyerOrder">
+          <End Role="FlyerEventBases" Type="Self.FlyerEventBases" Multiplicity="1" />
+          <End Role="FlyerOrders" Type="Self.FlyerOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlyerEventBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlyerOrders">
+              <PropertyRef Name="FlyerEventBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlyerEventBaseProduct">
+          <End Role="FlyerEventBases" Type="Self.FlyerEventBases" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlyerEventBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="FlyerEventBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlyerEventBasesFlyerTypes">
+          <End Role="FlyerTypes" Type="Self.FlyerTypes" Multiplicity="1" />
+          <End Role="FlyerEventBases" Type="Self.FlyerEventBases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlyerTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlyerEventBases">
+              <PropertyRef Name="FlyerType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlyerFormatFlyerEventBase">
+          <End Role="FlyerFormats" Type="Self.FlyerFormats" Multiplicity="1" />
+          <End Role="FlyerEventBases" Type="Self.FlyerEventBases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlyerFormats">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlyerEventBases">
+              <PropertyRef Name="FlyerFormat_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlyerScheduleFlyerEventBase">
+          <End Role="FlyerSchedules" Type="Self.FlyerSchedules" Multiplicity="1" />
+          <End Role="FlyerEventBases" Type="Self.FlyerEventBases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlyerSchedules">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlyerEventBases">
+              <PropertyRef Name="FlyerSchedule_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonContact">
+          <End Role="People" Type="Self.People" Multiplicity="1" />
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSupplierPricing">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="SupplierPricings" Type="Self.SupplierPricings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplierPricings">
+              <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegionDealerBase">
+          <End Role="Regions" Type="Self.Regions" Multiplicity="1" />
+          <End Role="DealerBases" Type="Self.DealerBases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DealerBases">
+              <PropertyRef Name="Region_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegionEntity1">
+          <End Role="Regions" Type="Self.Regions" Multiplicity="1" />
+          <End Role="SupplierRegions" Type="Self.SupplierRegions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplierRegions">
+              <PropertyRef Name="Region_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegionZone">
+          <End Role="Regions" Type="Self.Regions" Multiplicity="1" />
+          <End Role="Zones" Type="Self.Zones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zones">
+              <PropertyRef Name="Region_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplierBaseAddress">
+          <End Role="SupplierBases" Type="Self.SupplierBases" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupplierBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="SupplierBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplierBaseEntity1">
+          <End Role="SupplierBases" Type="Self.SupplierBases" Multiplicity="1" />
+          <End Role="SupplierRegions" Type="Self.SupplierRegions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupplierBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplierRegions">
+              <PropertyRef Name="SupplierBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplierBasePerson">
+          <End Role="SupplierBases" Type="Self.SupplierBases" Multiplicity="1" />
+          <End Role="People" Type="Self.People" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupplierBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="SupplierBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplierBaseSupplierPricing">
+          <End Role="SupplierBases" Type="Self.SupplierBases" Multiplicity="1" />
+          <End Role="SupplierPricings" Type="Self.SupplierPricings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupplierBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplierPricings">
+              <PropertyRef Name="SupplierBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThemeFlyerEventBase">
+          <End Role="Themes" Type="Self.Themes" Multiplicity="1" />
+          <End Role="FlyerEventBases" Type="Self.FlyerEventBases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Themes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlyerEventBases">
+              <PropertyRef Name="Theme_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FlyerModelStoreContainer">
+          <EntitySet Name="Addresses" EntityType="Self.Addresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DealerBases" EntityType="Self.DealerBases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Distributors" EntityType="Self.Distributors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlyerEventBases" EntityType="Self.FlyerEventBases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlyerFormats" EntityType="Self.FlyerFormats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlyerOrders" EntityType="Self.FlyerOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlyerSchedules" EntityType="Self.FlyerSchedules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlyerTypes" EntityType="Self.FlyerTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HoursOfOperations" EntityType="Self.HoursOfOperations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Regions" EntityType="Self.Regions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupplierBases" EntityType="Self.SupplierBases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupplierPricings" EntityType="Self.SupplierPricings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupplierRegions" EntityType="Self.SupplierRegions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Themes" EntityType="Self.Themes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zones" EntityType="Self.Zones" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AddressDealerBase" Association="Self.FK_AddressDealerBase">
+            <End Role="DealerBases" EntitySet="DealerBases" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealerBaseDistributor" Association="Self.FK_DealerBaseDistributor">
+            <End Role="DealerBases" EntitySet="DealerBases" />
+            <End Role="Distributors" EntitySet="Distributors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealerBaseFlyerOrder" Association="Self.FK_DealerBaseFlyerOrder">
+            <End Role="DealerBases" EntitySet="DealerBases" />
+            <End Role="FlyerOrders" EntitySet="FlyerOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealerBaseHoursOfOperation" Association="Self.FK_DealerBaseHoursOfOperation">
+            <End Role="DealerBases" EntitySet="DealerBases" />
+            <End Role="HoursOfOperations" EntitySet="HoursOfOperations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealerBasePerson" Association="Self.FK_DealerBasePerson">
+            <End Role="DealerBases" EntitySet="DealerBases" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealerBasesPayments" Association="Self.FK_DealerBasesPayments">
+            <End Role="Payments" EntitySet="Payments" />
+            <End Role="DealerBases" EntitySet="DealerBases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DistributorAddress" Association="Self.FK_DistributorAddress">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Distributors" EntitySet="Distributors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DistributorPerson" Association="Self.FK_DistributorPerson">
+            <End Role="Distributors" EntitySet="Distributors" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DistributorsFlyerOrder" Association="Self.FK_DistributorsFlyerOrder">
+            <End Role="FlyerOrders" EntitySet="FlyerOrders" />
+            <End Role="Distributors" EntitySet="Distributors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlyerEventBaseFlyerOrder" Association="Self.FK_FlyerEventBaseFlyerOrder">
+            <End Role="FlyerEventBases" EntitySet="FlyerEventBases" />
+            <End Role="FlyerOrders" EntitySet="FlyerOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlyerEventBaseProduct" Association="Self.FK_FlyerEventBaseProduct">
+            <End Role="FlyerEventBases" EntitySet="FlyerEventBases" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlyerEventBasesFlyerTypes" Association="Self.FK_FlyerEventBasesFlyerTypes">
+            <End Role="FlyerTypes" EntitySet="FlyerTypes" />
+            <End Role="FlyerEventBases" EntitySet="FlyerEventBases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlyerFormatFlyerEventBase" Association="Self.FK_FlyerFormatFlyerEventBase">
+            <End Role="FlyerFormats" EntitySet="FlyerFormats" />
+            <End Role="FlyerEventBases" EntitySet="FlyerEventBases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlyerScheduleFlyerEventBase" Association="Self.FK_FlyerScheduleFlyerEventBase">
+            <End Role="FlyerSchedules" EntitySet="FlyerSchedules" />
+            <End Role="FlyerEventBases" EntitySet="FlyerEventBases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonContact" Association="Self.FK_PersonContact">
+            <End Role="People" EntitySet="People" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSupplierPricing" Association="Self.FK_ProductSupplierPricing">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="SupplierPricings" EntitySet="SupplierPricings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegionDealerBase" Association="Self.FK_RegionDealerBase">
+            <End Role="Regions" EntitySet="Regions" />
+            <End Role="DealerBases" EntitySet="DealerBases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegionEntity1" Association="Self.FK_RegionEntity1">
+            <End Role="Regions" EntitySet="Regions" />
+            <End Role="SupplierRegions" EntitySet="SupplierRegions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegionZone" Association="Self.FK_RegionZone">
+            <End Role="Regions" EntitySet="Regions" />
+            <End Role="Zones" EntitySet="Zones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplierBaseAddress" Association="Self.FK_SupplierBaseAddress">
+            <End Role="SupplierBases" EntitySet="SupplierBases" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplierBaseEntity1" Association="Self.FK_SupplierBaseEntity1">
+            <End Role="SupplierBases" EntitySet="SupplierBases" />
+            <End Role="SupplierRegions" EntitySet="SupplierRegions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplierBasePerson" Association="Self.FK_SupplierBasePerson">
+            <End Role="SupplierBases" EntitySet="SupplierBases" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplierBaseSupplierPricing" Association="Self.FK_SupplierBaseSupplierPricing">
+            <End Role="SupplierBases" EntitySet="SupplierBases" />
+            <End Role="SupplierPricings" EntitySet="SupplierPricings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThemeFlyerEventBase" Association="Self.FK_ThemeFlyerEventBase">
+            <End Role="Themes" EntitySet="Themes" />
+            <End Role="FlyerEventBases" EntitySet="FlyerEventBases" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FlyerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Street" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="province" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="postalcode" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DealerBases_Id" Type="Int32" Nullable="false" />
+          <Property Name="SupplierBase_Id" Type="Int32" Nullable="false" />
+          <Property Name="country" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="DealerBas" Relationship="Self.FK_AddressDealerBase" FromRole="Addresses" ToRole="DealerBases" />
+          <NavigationProperty Name="Distributors" Relationship="Self.FK_DistributorAddress" FromRole="Addresses" ToRole="Distributors" />
+          <NavigationProperty Name="SupplierBas" Relationship="Self.FK_SupplierBaseAddress" FromRole="Addresses" ToRole="SupplierBases" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contacttype" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contactinfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Person_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_PersonContact" FromRole="Contacts" ToRole="People" />
+        </EntityType>
+        <EntityType Name="DealerBas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="apid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isdeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Region_Id" Type="Int32" Nullable="false" />
+          <Property Name="Payment_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_AddressDealerBase" FromRole="DealerBases" ToRole="Addresses" />
+          <NavigationProperty Name="Distributors" Relationship="Self.FK_DealerBaseDistributor" FromRole="DealerBases" ToRole="Distributors" />
+          <NavigationProperty Name="FlyerOrders" Relationship="Self.FK_DealerBaseFlyerOrder" FromRole="DealerBases" ToRole="FlyerOrders" />
+          <NavigationProperty Name="HoursOfOperations" Relationship="Self.FK_DealerBaseHoursOfOperation" FromRole="DealerBases" ToRole="HoursOfOperations" />
+          <NavigationProperty Name="People" Relationship="Self.FK_DealerBasePerson" FromRole="DealerBases" ToRole="People" />
+          <NavigationProperty Name="Payment" Relationship="Self.FK_DealerBasesPayments" FromRole="DealerBases" ToRole="Payments" />
+          <NavigationProperty Name="Region" Relationship="Self.FK_RegionDealerBase" FromRole="DealerBases" ToRole="Regions" />
+        </EntityType>
+        <EntityType Name="Distributor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isdeleted" Type="Boolean" Nullable="false" />
+          <Property Name="advanceddays" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="instructions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="datestarted" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dateended" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DealerBase_Id" Type="Int32" Nullable="false" />
+          <Property Name="FlyerOrder_Id" Type="Int32" />
+          <Property Name="Addresses_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_DistributorAddress" FromRole="Distributors" ToRole="Addresses" />
+          <NavigationProperty Name="DealerBas" Relationship="Self.FK_DealerBaseDistributor" FromRole="Distributors" ToRole="DealerBases" />
+          <NavigationProperty Name="People" Relationship="Self.FK_DistributorPerson" FromRole="Distributors" ToRole="People" />
+          <NavigationProperty Name="FlyerOrder" Relationship="Self.FK_DistributorsFlyerOrder" FromRole="Distributors" ToRole="FlyerOrders" />
+        </EntityType>
+        <EntityType Name="FlyerEventBas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="start" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="end" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="theme" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isdeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Theme_Id" Type="Int32" Nullable="false" />
+          <Property Name="FlyerFormat_Id" Type="Int32" Nullable="false" />
+          <Property Name="FlyerType_Id" Type="Int32" Nullable="false" />
+          <Property Name="FlyerSchedule_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FlyerOrders" Relationship="Self.FK_FlyerEventBaseFlyerOrder" FromRole="FlyerEventBases" ToRole="FlyerOrders" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_FlyerEventBaseProduct" FromRole="FlyerEventBases" ToRole="Products" />
+          <NavigationProperty Name="FlyerType" Relationship="Self.FK_FlyerEventBasesFlyerTypes" FromRole="FlyerEventBases" ToRole="FlyerTypes" />
+          <NavigationProperty Name="FlyerFormat" Relationship="Self.FK_FlyerFormatFlyerEventBase" FromRole="FlyerEventBases" ToRole="FlyerFormats" />
+          <NavigationProperty Name="FlyerSchedule" Relationship="Self.FK_FlyerScheduleFlyerEventBase" FromRole="FlyerEventBases" ToRole="FlyerSchedules" />
+          <NavigationProperty Name="Theme1" Relationship="Self.FK_ThemeFlyerEventBase" FromRole="FlyerEventBases" ToRole="Themes" />
+        </EntityType>
+        <EntityType Name="FlyerFormat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="formatlong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="formatshort" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isdeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="FlyerEventBases" Relationship="Self.FK_FlyerFormatFlyerEventBase" FromRole="FlyerFormats" ToRole="FlyerEventBases" />
+        </EntityType>
+        <EntityType Name="FlyerOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="amoutordered" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dateordered" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="orderedby" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isdeleted" Type="Boolean" Nullable="false" />
+          <Property Name="lastchanged" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FlyerEventBase_Id" Type="Int32" Nullable="false" />
+          <Property Name="DealerBase_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DealerBas" Relationship="Self.FK_DealerBaseFlyerOrder" FromRole="FlyerOrders" ToRole="DealerBases" />
+          <NavigationProperty Name="Distributors" Relationship="Self.FK_DistributorsFlyerOrder" FromRole="FlyerOrders" ToRole="Distributors" />
+          <NavigationProperty Name="FlyerEventBas" Relationship="Self.FK_FlyerEventBaseFlyerOrder" FromRole="FlyerOrders" ToRole="FlyerEventBases" />
+        </EntityType>
+        <EntityType Name="FlyerSchedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tminus" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="order" Type="Int32" Nullable="false" />
+          <Property Name="scheduleevent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="iscomplete" Type="Boolean" Nullable="false" />
+          <Property Name="isdeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="FlyerEventBases" Relationship="Self.FK_FlyerScheduleFlyerEventBase" FromRole="FlyerSchedules" ToRole="FlyerEventBases" />
+        </EntityType>
+        <EntityType Name="FlyerType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="typenamelong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="typenameshort" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isdeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="FlyerEventBases" Relationship="Self.FK_FlyerEventBasesFlyerTypes" FromRole="FlyerTypes" ToRole="FlyerEventBases" />
+        </EntityType>
+        <EntityType Name="HoursOfOperation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="day" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="opentime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="closetime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isdeleted" Type="Boolean" Nullable="false" />
+          <Property Name="isclosed" Type="Boolean" Nullable="false" />
+          <Property Name="DealerBase_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DealerBas" Relationship="Self.FK_DealerBaseHoursOfOperation" FromRole="HoursOfOperations" ToRole="DealerBases" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isaccepted" Type="Boolean" Nullable="false" />
+          <Property Name="isdeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DealerBases" Relationship="Self.FK_DealerBasesPayments" FromRole="Payments" ToRole="DealerBases" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isDealer" Type="Boolean" Nullable="false" />
+          <Property Name="SupplierBase_Id" Type="Int32" Nullable="false" />
+          <Property Name="DealerBase_Id" Type="Int32" Nullable="false" />
+          <Property Name="Distributor_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contacts" Relationship="Self.FK_PersonContact" FromRole="People" ToRole="Contacts" />
+          <NavigationProperty Name="DealerBas" Relationship="Self.FK_DealerBasePerson" FromRole="People" ToRole="DealerBases" />
+          <NavigationProperty Name="Distributor" Relationship="Self.FK_DistributorPerson" FromRole="People" ToRole="Distributors" />
+          <NavigationProperty Name="SupplierBas" Relationship="Self.FK_SupplierBasePerson" FromRole="People" ToRole="SupplierBases" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cost" Type="Int32" Nullable="false" />
+          <Property Name="gross" Type="Int32" Nullable="false" />
+          <Property Name="retail" Type="Int32" Nullable="false" />
+          <Property Name="isdeleted" Type="Boolean" Nullable="false" />
+          <Property Name="FlyerEventBase_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FlyerEventBas" Relationship="Self.FK_FlyerEventBaseProduct" FromRole="Products" ToRole="FlyerEventBases" />
+          <NavigationProperty Name="SupplierPricings" Relationship="Self.FK_ProductSupplierPricing" FromRole="Products" ToRole="SupplierPricings" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="longname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shortname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isdeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DealerBases" Relationship="Self.FK_RegionDealerBase" FromRole="Regions" ToRole="DealerBases" />
+          <NavigationProperty Name="SupplierRegions" Relationship="Self.FK_RegionEntity1" FromRole="Regions" ToRole="SupplierRegions" />
+          <NavigationProperty Name="Zones" Relationship="Self.FK_RegionZone" FromRole="Regions" ToRole="Zones" />
+        </EntityType>
+        <EntityType Name="SupplierBas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isdeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_SupplierBaseAddress" FromRole="SupplierBases" ToRole="Addresses" />
+          <NavigationProperty Name="People" Relationship="Self.FK_SupplierBasePerson" FromRole="SupplierBases" ToRole="People" />
+          <NavigationProperty Name="SupplierRegions" Relationship="Self.FK_SupplierBaseEntity1" FromRole="SupplierBases" ToRole="SupplierRegions" />
+          <NavigationProperty Name="SupplierPricings" Relationship="Self.FK_SupplierBaseSupplierPricing" FromRole="SupplierBases" ToRole="SupplierPricings" />
+        </EntityType>
+        <EntityType Name="SupplierPricing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cost" Type="Int32" Nullable="false" />
+          <Property Name="SupplierBase_Id" Type="Int32" Nullable="false" />
+          <Property Name="Product_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProductSupplierPricing" FromRole="SupplierPricings" ToRole="Products" />
+          <NavigationProperty Name="SupplierBas" Relationship="Self.FK_SupplierBaseSupplierPricing" FromRole="SupplierPricings" ToRole="SupplierBases" />
+        </EntityType>
+        <EntityType Name="SupplierRegion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierBase_Id" Type="Int32" Nullable="false" />
+          <Property Name="Region_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Region" Relationship="Self.FK_RegionEntity1" FromRole="SupplierRegions" ToRole="Regions" />
+          <NavigationProperty Name="SupplierBas" Relationship="Self.FK_SupplierBaseEntity1" FromRole="SupplierRegions" ToRole="SupplierBases" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Theme">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isdeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="FlyerEventBases" Relationship="Self.FK_ThemeFlyerEventBase" FromRole="Themes" ToRole="FlyerEventBases" />
+        </EntityType>
+        <EntityType Name="Zone">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shortname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="longname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Region_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Region" Relationship="Self.FK_RegionZone" FromRole="Zones" ToRole="Regions" />
+        </EntityType>
+        <Association Name="FK_AddressDealerBase">
+          <End Role="DealerBases" Type="Self.DealerBas" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DealerBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="DealerBases_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DistributorAddress">
+          <End Role="Addresses" Type="Self.Address" Multiplicity="1" />
+          <End Role="Distributors" Type="Self.Distributor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Distributors">
+              <PropertyRef Name="Addresses_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplierBaseAddress">
+          <End Role="SupplierBases" Type="Self.SupplierBas" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupplierBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="SupplierBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonContact">
+          <End Role="People" Type="Self.Person" Multiplicity="1" />
+          <End Role="Contacts" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealerBaseDistributor">
+          <End Role="DealerBases" Type="Self.DealerBas" Multiplicity="1" />
+          <End Role="Distributors" Type="Self.Distributor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DealerBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Distributors">
+              <PropertyRef Name="DealerBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealerBaseFlyerOrder">
+          <End Role="DealerBases" Type="Self.DealerBas" Multiplicity="1" />
+          <End Role="FlyerOrders" Type="Self.FlyerOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DealerBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlyerOrders">
+              <PropertyRef Name="DealerBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealerBaseHoursOfOperation">
+          <End Role="DealerBases" Type="Self.DealerBas" Multiplicity="1" />
+          <End Role="HoursOfOperations" Type="Self.HoursOfOperation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DealerBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HoursOfOperations">
+              <PropertyRef Name="DealerBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealerBasePerson">
+          <End Role="DealerBases" Type="Self.DealerBas" Multiplicity="1" />
+          <End Role="People" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DealerBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="DealerBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealerBasesPayments">
+          <End Role="Payments" Type="Self.Payment" Multiplicity="1" />
+          <End Role="DealerBases" Type="Self.DealerBas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DealerBases">
+              <PropertyRef Name="Payment_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegionDealerBase">
+          <End Role="Regions" Type="Self.Region" Multiplicity="1" />
+          <End Role="DealerBases" Type="Self.DealerBas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DealerBases">
+              <PropertyRef Name="Region_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DistributorPerson">
+          <End Role="Distributors" Type="Self.Distributor" Multiplicity="1" />
+          <End Role="People" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distributors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="Distributor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DistributorsFlyerOrder">
+          <End Role="FlyerOrders" Type="Self.FlyerOrder" Multiplicity="0..1" />
+          <End Role="Distributors" Type="Self.Distributor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlyerOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Distributors">
+              <PropertyRef Name="FlyerOrder_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlyerEventBaseFlyerOrder">
+          <End Role="FlyerEventBases" Type="Self.FlyerEventBas" Multiplicity="1" />
+          <End Role="FlyerOrders" Type="Self.FlyerOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlyerEventBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlyerOrders">
+              <PropertyRef Name="FlyerEventBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlyerEventBaseProduct">
+          <End Role="FlyerEventBases" Type="Self.FlyerEventBas" Multiplicity="1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlyerEventBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="FlyerEventBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlyerEventBasesFlyerTypes">
+          <End Role="FlyerTypes" Type="Self.FlyerType" Multiplicity="1" />
+          <End Role="FlyerEventBases" Type="Self.FlyerEventBas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlyerTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlyerEventBases">
+              <PropertyRef Name="FlyerType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlyerFormatFlyerEventBase">
+          <End Role="FlyerFormats" Type="Self.FlyerFormat" Multiplicity="1" />
+          <End Role="FlyerEventBases" Type="Self.FlyerEventBas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlyerFormats">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlyerEventBases">
+              <PropertyRef Name="FlyerFormat_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlyerScheduleFlyerEventBase">
+          <End Role="FlyerSchedules" Type="Self.FlyerSchedule" Multiplicity="1" />
+          <End Role="FlyerEventBases" Type="Self.FlyerEventBas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlyerSchedules">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlyerEventBases">
+              <PropertyRef Name="FlyerSchedule_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThemeFlyerEventBase">
+          <End Role="Themes" Type="Self.Theme" Multiplicity="1" />
+          <End Role="FlyerEventBases" Type="Self.FlyerEventBas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Themes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlyerEventBases">
+              <PropertyRef Name="Theme_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplierBasePerson">
+          <End Role="SupplierBases" Type="Self.SupplierBas" Multiplicity="1" />
+          <End Role="People" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupplierBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="SupplierBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSupplierPricing">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="SupplierPricings" Type="Self.SupplierPricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplierPricings">
+              <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegionEntity1">
+          <End Role="Regions" Type="Self.Region" Multiplicity="1" />
+          <End Role="SupplierRegions" Type="Self.SupplierRegion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplierRegions">
+              <PropertyRef Name="Region_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegionZone">
+          <End Role="Regions" Type="Self.Region" Multiplicity="1" />
+          <End Role="Zones" Type="Self.Zone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zones">
+              <PropertyRef Name="Region_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplierBaseEntity1">
+          <End Role="SupplierBases" Type="Self.SupplierBas" Multiplicity="1" />
+          <End Role="SupplierRegions" Type="Self.SupplierRegion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupplierBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplierRegions">
+              <PropertyRef Name="SupplierBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplierBaseSupplierPricing">
+          <End Role="SupplierBases" Type="Self.SupplierBas" Multiplicity="1" />
+          <End Role="SupplierPricings" Type="Self.SupplierPricing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupplierBases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupplierPricings">
+              <PropertyRef Name="SupplierBase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FlyerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="Contacts" EntityType="Self.Contact" />
+          <EntitySet Name="DealerBases" EntityType="Self.DealerBas" />
+          <EntitySet Name="Distributors" EntityType="Self.Distributor" />
+          <EntitySet Name="FlyerEventBases" EntityType="Self.FlyerEventBas" />
+          <EntitySet Name="FlyerFormats" EntityType="Self.FlyerFormat" />
+          <EntitySet Name="FlyerOrders" EntityType="Self.FlyerOrder" />
+          <EntitySet Name="FlyerSchedules" EntityType="Self.FlyerSchedule" />
+          <EntitySet Name="FlyerTypes" EntityType="Self.FlyerType" />
+          <EntitySet Name="HoursOfOperations" EntityType="Self.HoursOfOperation" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Regions" EntityType="Self.Region" />
+          <EntitySet Name="SupplierBases" EntityType="Self.SupplierBas" />
+          <EntitySet Name="SupplierPricings" EntityType="Self.SupplierPricing" />
+          <EntitySet Name="SupplierRegions" EntityType="Self.SupplierRegion" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Themes" EntityType="Self.Theme" />
+          <EntitySet Name="Zones" EntityType="Self.Zone" />
+          <AssociationSet Name="FK_AddressDealerBase" Association="Self.FK_AddressDealerBase">
+            <End Role="DealerBases" EntitySet="DealerBases" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DistributorAddress" Association="Self.FK_DistributorAddress">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Distributors" EntitySet="Distributors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplierBaseAddress" Association="Self.FK_SupplierBaseAddress">
+            <End Role="SupplierBases" EntitySet="SupplierBases" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonContact" Association="Self.FK_PersonContact">
+            <End Role="People" EntitySet="People" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealerBaseDistributor" Association="Self.FK_DealerBaseDistributor">
+            <End Role="DealerBases" EntitySet="DealerBases" />
+            <End Role="Distributors" EntitySet="Distributors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealerBaseFlyerOrder" Association="Self.FK_DealerBaseFlyerOrder">
+            <End Role="DealerBases" EntitySet="DealerBases" />
+            <End Role="FlyerOrders" EntitySet="FlyerOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealerBaseHoursOfOperation" Association="Self.FK_DealerBaseHoursOfOperation">
+            <End Role="DealerBases" EntitySet="DealerBases" />
+            <End Role="HoursOfOperations" EntitySet="HoursOfOperations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealerBasePerson" Association="Self.FK_DealerBasePerson">
+            <End Role="DealerBases" EntitySet="DealerBases" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealerBasesPayments" Association="Self.FK_DealerBasesPayments">
+            <End Role="Payments" EntitySet="Payments" />
+            <End Role="DealerBases" EntitySet="DealerBases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegionDealerBase" Association="Self.FK_RegionDealerBase">
+            <End Role="Regions" EntitySet="Regions" />
+            <End Role="DealerBases" EntitySet="DealerBases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DistributorPerson" Association="Self.FK_DistributorPerson">
+            <End Role="Distributors" EntitySet="Distributors" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DistributorsFlyerOrder" Association="Self.FK_DistributorsFlyerOrder">
+            <End Role="FlyerOrders" EntitySet="FlyerOrders" />
+            <End Role="Distributors" EntitySet="Distributors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlyerEventBaseFlyerOrder" Association="Self.FK_FlyerEventBaseFlyerOrder">
+            <End Role="FlyerEventBases" EntitySet="FlyerEventBases" />
+            <End Role="FlyerOrders" EntitySet="FlyerOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlyerEventBaseProduct" Association="Self.FK_FlyerEventBaseProduct">
+            <End Role="FlyerEventBases" EntitySet="FlyerEventBases" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlyerEventBasesFlyerTypes" Association="Self.FK_FlyerEventBasesFlyerTypes">
+            <End Role="FlyerTypes" EntitySet="FlyerTypes" />
+            <End Role="FlyerEventBases" EntitySet="FlyerEventBases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlyerFormatFlyerEventBase" Association="Self.FK_FlyerFormatFlyerEventBase">
+            <End Role="FlyerFormats" EntitySet="FlyerFormats" />
+            <End Role="FlyerEventBases" EntitySet="FlyerEventBases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlyerScheduleFlyerEventBase" Association="Self.FK_FlyerScheduleFlyerEventBase">
+            <End Role="FlyerSchedules" EntitySet="FlyerSchedules" />
+            <End Role="FlyerEventBases" EntitySet="FlyerEventBases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThemeFlyerEventBase" Association="Self.FK_ThemeFlyerEventBase">
+            <End Role="Themes" EntitySet="Themes" />
+            <End Role="FlyerEventBases" EntitySet="FlyerEventBases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplierBasePerson" Association="Self.FK_SupplierBasePerson">
+            <End Role="SupplierBases" EntitySet="SupplierBases" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSupplierPricing" Association="Self.FK_ProductSupplierPricing">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="SupplierPricings" EntitySet="SupplierPricings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegionEntity1" Association="Self.FK_RegionEntity1">
+            <End Role="Regions" EntitySet="Regions" />
+            <End Role="SupplierRegions" EntitySet="SupplierRegions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegionZone" Association="Self.FK_RegionZone">
+            <End Role="Regions" EntitySet="Regions" />
+            <End Role="Zones" EntitySet="Zones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplierBaseEntity1" Association="Self.FK_SupplierBaseEntity1">
+            <End Role="SupplierBases" EntitySet="SupplierBases" />
+            <End Role="SupplierRegions" EntitySet="SupplierRegions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplierBaseSupplierPricing" Association="Self.FK_SupplierBaseSupplierPricing">
+            <End Role="SupplierBases" EntitySet="SupplierBases" />
+            <End Role="SupplierPricings" EntitySet="SupplierPricings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FlyerModelStoreContainer" CdmEntityContainer="FlyerEntities">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="FlyerModel.Address">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="postalcode" ColumnName="postalcode" />
+                <ScalarProperty Name="DealerBases_Id" ColumnName="DealerBases_Id" />
+                <ScalarProperty Name="SupplierBase_Id" ColumnName="SupplierBase_Id" />
+                <ScalarProperty Name="country" ColumnName="country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="FlyerModel.Contact">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="contacttype" ColumnName="contacttype" />
+                <ScalarProperty Name="contactinfo" ColumnName="contactinfo" />
+                <ScalarProperty Name="Person_Id" ColumnName="Person_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DealerBases">
+            <EntityTypeMapping TypeName="FlyerModel.DealerBas">
+              <MappingFragment StoreEntitySet="DealerBases">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="apid" ColumnName="apid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="Payment_Id" ColumnName="Payment_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Distributors">
+            <EntityTypeMapping TypeName="FlyerModel.Distributor">
+              <MappingFragment StoreEntitySet="Distributors">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="advanceddays" ColumnName="advanceddays" />
+                <ScalarProperty Name="instructions" ColumnName="instructions" />
+                <ScalarProperty Name="datestarted" ColumnName="datestarted" />
+                <ScalarProperty Name="dateended" ColumnName="dateended" />
+                <ScalarProperty Name="DealerBase_Id" ColumnName="DealerBase_Id" />
+                <ScalarProperty Name="FlyerOrder_Id" ColumnName="FlyerOrder_Id" />
+                <ScalarProperty Name="Addresses_Id" ColumnName="Addresses_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlyerEventBases">
+            <EntityTypeMapping TypeName="FlyerModel.FlyerEventBas">
+              <MappingFragment StoreEntitySet="FlyerEventBases">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="start" ColumnName="start" />
+                <ScalarProperty Name="end" ColumnName="end" />
+                <ScalarProperty Name="theme" ColumnName="theme" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="Theme_Id" ColumnName="Theme_Id" />
+                <ScalarProperty Name="FlyerFormat_Id" ColumnName="FlyerFormat_Id" />
+                <ScalarProperty Name="FlyerType_Id" ColumnName="FlyerType_Id" />
+                <ScalarProperty Name="FlyerSchedule_Id" ColumnName="FlyerSchedule_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlyerFormats">
+            <EntityTypeMapping TypeName="FlyerModel.FlyerFormat">
+              <MappingFragment StoreEntitySet="FlyerFormats">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="formatlong" ColumnName="formatlong" />
+                <ScalarProperty Name="formatshort" ColumnName="formatshort" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlyerOrders">
+            <EntityTypeMapping TypeName="FlyerModel.FlyerOrder">
+              <MappingFragment StoreEntitySet="FlyerOrders">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="amoutordered" ColumnName="amoutordered" />
+                <ScalarProperty Name="dateordered" ColumnName="dateordered" />
+                <ScalarProperty Name="orderedby" ColumnName="orderedby" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="lastchanged" ColumnName="lastchanged" />
+                <ScalarProperty Name="FlyerEventBase_Id" ColumnName="FlyerEventBase_Id" />
+                <ScalarProperty Name="DealerBase_Id" ColumnName="DealerBase_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlyerSchedules">
+            <EntityTypeMapping TypeName="FlyerModel.FlyerSchedule">
+              <MappingFragment StoreEntitySet="FlyerSchedules">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="tminus" ColumnName="tminus" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="scheduleevent" ColumnName="scheduleevent" />
+                <ScalarProperty Name="iscomplete" ColumnName="iscomplete" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlyerTypes">
+            <EntityTypeMapping TypeName="FlyerModel.FlyerType">
+              <MappingFragment StoreEntitySet="FlyerTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="typenamelong" ColumnName="typenamelong" />
+                <ScalarProperty Name="typenameshort" ColumnName="typenameshort" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoursOfOperations">
+            <EntityTypeMapping TypeName="FlyerModel.HoursOfOperation">
+              <MappingFragment StoreEntitySet="HoursOfOperations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="opentime" ColumnName="opentime" />
+                <ScalarProperty Name="closetime" ColumnName="closetime" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="isclosed" ColumnName="isclosed" />
+                <ScalarProperty Name="DealerBase_Id" ColumnName="DealerBase_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="FlyerModel.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="isaccepted" ColumnName="isaccepted" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="FlyerModel.Person">
+              <MappingFragment StoreEntitySet="People">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="isDealer" ColumnName="isDealer" />
+                <ScalarProperty Name="SupplierBase_Id" ColumnName="SupplierBase_Id" />
+                <ScalarProperty Name="DealerBase_Id" ColumnName="DealerBase_Id" />
+                <ScalarProperty Name="Distributor_Id" ColumnName="Distributor_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="FlyerModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="gross" ColumnName="gross" />
+                <ScalarProperty Name="retail" ColumnName="retail" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+                <ScalarProperty Name="FlyerEventBase_Id" ColumnName="FlyerEventBase_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="FlyerModel.Region">
+              <MappingFragment StoreEntitySet="Regions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="longname" ColumnName="longname" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupplierBases">
+            <EntityTypeMapping TypeName="FlyerModel.SupplierBas">
+              <MappingFragment StoreEntitySet="SupplierBases">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupplierPricings">
+            <EntityTypeMapping TypeName="FlyerModel.SupplierPricing">
+              <MappingFragment StoreEntitySet="SupplierPricings">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="SupplierBase_Id" ColumnName="SupplierBase_Id" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupplierRegions">
+            <EntityTypeMapping TypeName="FlyerModel.SupplierRegion">
+              <MappingFragment StoreEntitySet="SupplierRegions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SupplierBase_Id" ColumnName="SupplierBase_Id" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FlyerModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Themes">
+            <EntityTypeMapping TypeName="FlyerModel.Theme">
+              <MappingFragment StoreEntitySet="Themes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zones">
+            <EntityTypeMapping TypeName="FlyerModel.Zone">
+              <MappingFragment StoreEntitySet="Zones">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="longname" ColumnName="longname" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

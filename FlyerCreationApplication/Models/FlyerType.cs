@@ -7,18 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FlyerCreationApplication
+namespace FlyerCreationApplication.Models
 {
     using System;
     using System.Collections.Generic;
     
     public partial class FlyerType
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public FlyerType()
+        {
+            this.FlyerEventBases = new HashSet<FlyerEventBas>();
+        }
+    
         public int Id { get; set; }
         public string typenamelong { get; set; }
         public string typenameshort { get; set; }
         public bool isdeleted { get; set; }
     
-        public virtual FlyerEventBase FlyerEventBase { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FlyerEventBas> FlyerEventBases { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'F:\Users\Scott-HaggisPC\Documents\Visual Studio 2015\Projects\FlyerCreationApplication\FlyerCreationApplication\FlyerCreationApplication.edmx'. 
+﻿// T4 code generation is enabled for model 'F:\Users\Scott-HaggisPC\Documents\Visual Studio 2015\Projects\FlyerCreationApplication\FlyerCreationApplication\Models\flyer.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

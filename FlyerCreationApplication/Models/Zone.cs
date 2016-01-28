@@ -7,17 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FlyerCreationApplication
+namespace FlyerCreationApplication.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Contact
+    public partial class Zone
     {
         public int Id { get; set; }
-        public string contacttype { get; set; }
-        public string contactinfo { get; set; }
+        public string shortname { get; set; }
+        public string longname { get; set; }
+        public int Region_Id { get; set; }
     
-        public virtual Person Person { get; set; }
+        public virtual Region Region { get; set; }
     }
 }

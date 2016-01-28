@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FlyerCreationApplication
+namespace FlyerCreationApplication.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Payment
+    public partial class Contact
     {
         public int Id { get; set; }
-        public string type { get; set; }
-        public bool isaccepted { get; set; }
-        public bool isdeleted { get; set; }
+        public string contacttype { get; set; }
+        public string contactinfo { get; set; }
+        public int Person_Id { get; set; }
     
-        public virtual DealerBase DealerBase { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

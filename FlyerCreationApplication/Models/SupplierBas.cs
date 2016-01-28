@@ -7,35 +7,33 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FlyerCreationApplication
+namespace FlyerCreationApplication.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class FlyerEventBase
+    public partial class SupplierBas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public FlyerEventBase()
+        public SupplierBas()
         {
-            this.Products = new HashSet<Product>();
-            this.FlyerTypes = new HashSet<FlyerType>();
-            this.FlyerOrders = new HashSet<FlyerOrder>();
+            this.Addresses = new HashSet<Address>();
+            this.People = new HashSet<Person>();
+            this.SupplierRegions = new HashSet<SupplierRegion>();
+            this.SupplierPricings = new HashSet<SupplierPricing>();
         }
     
         public int Id { get; set; }
-        public System.DateTime start { get; set; }
-        public System.DateTime end { get; set; }
-        public string theme { get; set; }
+        public string name { get; set; }
         public bool isdeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
-        public virtual Theme Theme { get; set; }
+        public virtual ICollection<Address> Addresses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FlyerType> FlyerTypes { get; set; }
-        public virtual FlyerFormat FlyerFormat { get; set; }
-        public virtual FlyerSchedule FlyerSchedule { get; set; }
+        public virtual ICollection<Person> People { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FlyerOrder> FlyerOrders { get; set; }
+        public virtual ICollection<SupplierRegion> SupplierRegions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SupplierPricing> SupplierPricings { get; set; }
     }
 }

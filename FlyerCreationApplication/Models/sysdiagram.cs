@@ -7,20 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FlyerCreationApplication
+namespace FlyerCreationApplication.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class HoursOfOperation
+    public partial class sysdiagram
     {
-        public int Id { get; set; }
-        public string day { get; set; }
-        public string opentime { get; set; }
-        public string closetime { get; set; }
-        public bool isdeleted { get; set; }
-        public bool isclosed { get; set; }
-    
-        public virtual DealerBase DealerBase { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

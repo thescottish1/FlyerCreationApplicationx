@@ -7,22 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FlyerCreationApplication
+namespace FlyerCreationApplication.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Address
+    public partial class SupplierPricing
     {
         public int Id { get; set; }
-        public string Street { get; set; }
-        public string City { get; set; }
-        public string province { get; set; }
-        public string postalcode { get; set; }
-        public string country { get; set; }
+        public int cost { get; set; }
+        public int SupplierBase_Id { get; set; }
+        public int Product_Id { get; set; }
     
-        public virtual Distributor Distributor { get; set; }
-        public virtual DealerBase DealerBases { get; set; }
-        public virtual SupplierBase SupplierBase { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual SupplierBas SupplierBas { get; set; }
     }
 }

@@ -7,17 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FlyerCreationApplication
+namespace FlyerCreationApplication.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class SupplierPricing
+    public partial class HoursOfOperation
     {
         public int Id { get; set; }
-        public int cost { get; set; }
+        public string day { get; set; }
+        public string opentime { get; set; }
+        public string closetime { get; set; }
+        public bool isdeleted { get; set; }
+        public bool isclosed { get; set; }
+        public int DealerBase_Id { get; set; }
     
-        public virtual SupplierBase SupplierBase { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual DealerBas DealerBas { get; set; }
     }
 }

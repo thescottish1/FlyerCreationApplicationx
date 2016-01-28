@@ -7,31 +7,32 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FlyerCreationApplication
+namespace FlyerCreationApplication.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Distributor
+    public partial class Person
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Distributor()
+        public Person()
         {
-            this.People = new HashSet<Person>();
+            this.Contacts = new HashSet<Contact>();
         }
     
         public int Id { get; set; }
-        public string name { get; set; }
-        public string type { get; set; }
-        public bool isdeleted { get; set; }
-        public string advanceddays { get; set; }
-        public string instructions { get; set; }
-        public System.DateTime datestarted { get; set; }
-        public System.DateTime dateended { get; set; }
+        public string fname { get; set; }
+        public string lname { get; set; }
+        public string title { get; set; }
+        public bool isDealer { get; set; }
+        public int SupplierBase_Id { get; set; }
+        public int DealerBase_Id { get; set; }
+        public int Distributor_Id { get; set; }
     
-        public virtual DealerBase DealerBase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Person> People { get; set; }
-        public virtual Address Addresses { get; set; }
+        public virtual ICollection<Contact> Contacts { get; set; }
+        public virtual DealerBas DealerBas { get; set; }
+        public virtual Distributor Distributor { get; set; }
+        public virtual SupplierBas SupplierBas { get; set; }
     }
 }
