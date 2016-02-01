@@ -173,34 +173,34 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="Administration.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="FlyerCreationApplication.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FlyerCreationApplication.Context.cs</LastGenOutput>
-      <DependentUpon>FlyerCreationApplication.edmx</DependentUpon>
-    </Content>
-    <Content Include="FlyerCreationApplication.edmx.sql" />
-    <Content Include="FlyerCreationApplication.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FlyerCreationApplication.cs</LastGenOutput>
-      <DependentUpon>FlyerCreationApplication.edmx</DependentUpon>
-    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
-    <EntityDeploy Include="FlyerCreationApplication.edmx">
+    <EntityDeploy Include="Models\flyer.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FlyerCreationApplication.Designer.cs</LastGenOutput>
+      <LastGenOutput>flyer.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="FlyerCreationApplication.edmx.diagram">
-      <DependentUpon>FlyerCreationApplication.edmx</DependentUpon>
+    <Content Include="Models\flyer.edmx.diagram">
+      <DependentUpon>flyer.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Models\flyer.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>flyer.edmx</DependentUpon>
+      <LastGenOutput>flyer.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\flyer.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>flyer.edmx</DependentUpon>
+      <LastGenOutput>flyer.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -357,8 +357,12 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Address.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
+    <Compile Include="Administration.aspx.cs">
+      <DependentUpon>Administration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administration.aspx.designer.cs">
+      <DependentUpon>Administration.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
@@ -378,13 +382,6 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Contact.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DealerBase.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -392,59 +389,87 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Distributor.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FlyerCreationApplication.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FlyerCreationApplication.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FlyerCreationApplication.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FlyerCreationApplication.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FlyerCreationApplication.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="FlyerEventBase.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FlyerFormat.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FlyerOrder.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FlyerSchedule.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FlyerType.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="HoursOfOperation.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
+    <Compile Include="Models\Address.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Contact.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dealer.cs" />
+    <Compile Include="Models\DealerBas.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Distributor.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\flyer.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>flyer.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\flyer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\flyer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>flyer.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FlyerEventBas.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FlyerFormat.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FlyerOrder.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FlyerSchedule.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FlyerType.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HoursOfOperation.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Payment.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
+    <Compile Include="Models\Payment.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
     </Compile>
-    <Compile Include="Person.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
+    <Compile Include="Models\Person.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
     </Compile>
-    <Compile Include="Product.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Region.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SupplierBas.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SupplierPricing.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SupplierRegion.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Theme.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Zone.cs">
+      <DependentUpon>flyer.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Region.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
-    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -460,27 +485,12 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="SupplierBase.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SupplierPricing.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SupplierRegion.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Theme.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Zone.cs">
-      <DependentUpon>FlyerCreationApplication.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
