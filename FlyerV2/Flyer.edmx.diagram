@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="792b1da513e24b4da558050ac4724c95" Name="Diagram1">
+        <EntityTypeShape EntityType="FlyerModel.Address" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.Contact" Width="1.5" PointX="15" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.DealerBas" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.Distributor" Width="1.5" PointX="10.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.FlyerEventBas" Width="1.5" PointX="3" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.FlyerFormat" Width="1.5" PointX="0.75" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.FlyerOrder" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.FlyerSchedule" Width="1.5" PointX="0.75" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.FlyerType" Width="1.5" PointX="0.75" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.HoursOfOperation" Width="1.5" PointX="5.25" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.Payment" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.Person" Width="1.5" PointX="12.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.Product" Width="1.5" PointX="6" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.Region" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.SupplierBas" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.SupplierPricing" Width="1.5" PointX="8.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.SupplierRegion" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.Theme" Width="1.5" PointX="0.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlyerModel.Zone" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <AssociationConnector Association="FlyerModel.FK_AddressDealerBase" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_DistributorAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_SupplierBaseAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_PersonContact" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_DealerBaseDistributor" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_DealerBaseFlyerOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_DealerBaseHoursOfOperation" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_DealerBasePerson" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_DealerBasesPayments" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_RegionDealerBase" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_DistributorPerson" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_DistributorsFlyerOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_FlyerEventBaseFlyerOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_FlyerEventBaseProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_FlyerEventBasesFlyerTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_FlyerFormatFlyerEventBase" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_FlyerScheduleFlyerEventBase" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_ThemeFlyerEventBase" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_SupplierBasePerson" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_ProductSupplierPricing" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_RegionEntity1" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_RegionZone" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_SupplierBaseEntity1" ManuallyRouted="false" />
+        <AssociationConnector Association="FlyerModel.FK_SupplierBaseSupplierPricing" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
